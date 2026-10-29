@@ -1,0 +1,4 @@
+interface:
+  display_name: "京鸿汝窑小红书图册"
+  short_description: "从汝瓷原图生成文化型小红书图册、发布文案及完整质检交付"
+  default_prompt: "Use $jinghong-xiaohongshu-albums to turn my categorized Ru ware photos into complete Xiaohongshu albums with culture-led copy."
