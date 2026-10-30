@@ -42,11 +42,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("manifest", type=Path)
     parser.add_argument("--report", type=Path)
+    parser.add_argument("--output-dir", type=Path, help="Check a different output folder from the manifest")
     args = parser.parse_args()
 
     config = json.loads(args.manifest.read_text(encoding="utf-8"))
     source_dir = Path(config["source_dir"])
-    output_dir = Path(config["output_dir"])
+    output_dir = args.output_dir or Path(config["output_dir"])
     issues: list[str] = []
     checked = 0
 
@@ -90,3 +91,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
