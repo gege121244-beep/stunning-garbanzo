@@ -208,84 +208,99 @@ def render_page(
     width, height = image.size
     layer = Image.new("RGBA", image.size, (0, 0, 0, 0))
 
-    # Locked to the previously approved Song-aesthetic V2 system.
+    # Locked to the 13-album typography system confirmed on 2026-10-30.
     warm = (218, 211, 198)
     quiet = (202, 195, 182)
     faint = (183, 175, 161)
-    title_font = load_font(round(width * 0.036), serif=True)
-    cover_first_font = load_font(round(width * 0.040), serif=True)
-    title_small_font = load_font(round(width * 0.031), serif=True)
-    body_font = load_font(round(width * 0.0162), serif=True)
-    body_small_font = load_font(round(width * 0.0146), serif=True)
-    brand_font = load_font(round(width * 0.0130), serif=False)
-    vertical_font = load_font(round(width * 0.029), serif=True)
-    rule_width = max(2, round(width * 0.00045))
+    title_font = load_font(round(width * 0.041), serif=True)
+    cover_first_font = load_font(round(width * 0.046), serif=True)
+    title_small_font = load_font(round(width * 0.039), serif=True)
+    body_font = load_font(round(width * 0.029), serif=True)
+    brand_font = load_font(round(width * 0.018), serif=False)
+    vertical_font = load_font(round(width * 0.036), serif=True)
+    rule_width = max(2, round(width * 0.00055))
 
     title_parts = [part for part in title.splitlines() if part] or [title]
     subtitle_parts = [part for part in subtitle.splitlines() if part]
     title_text = "\n".join(title_parts)
     subtitle_text = "\n".join(subtitle_parts)
-    # The approved V2 set contains exactly five hand-positioned compositions.
-    # Repeat those five; do not introduce additional automatic templates.
-    variant = layout % 5
+    variant = layout % 10
 
     if cover:
-        textured_text(layer, signature.replace(" ", "  "), (width // 2, round(height * 0.070)), brand_font, faint, 148, "center")
-        draw_rule(layer, (round(width * 0.47), round(height * 0.108), round(width * 0.53), round(height * 0.108)), (*faint, 78), rule_width)
+        textured_text(layer, kicker, (width // 2, round(height * 0.070)), body_font, faint, 218, "center")
+        draw_rule(layer, (round(width * 0.45), round(height * 0.120), round(width * 0.55), round(height * 0.120)), (*faint, 92), rule_width)
         if len(title_parts) == 2:
-            textured_text(layer, title_parts[0], (width // 2, round(height * 0.166)), cover_first_font, warm, 216, "center")
-            textured_text(layer, title_parts[1], (width // 2, round(height * 0.222)), title_font, warm, 216, "center")
-            subtitle_y = round(height * 0.320)
+            textured_text(layer, title_parts[0], (width // 2, round(height * 0.155)), cover_first_font, warm, 232, "center")
+            textured_text(layer, title_parts[1], (width // 2, round(height * 0.206)), cover_first_font, warm, 232, "center")
+            subtitle_y = round(height * 0.285)
         else:
-            textured_text(layer, title_text, (width // 2, round(height * 0.178)), title_font, warm, 216, "center", spacing=round(title_font.size * 0.34))
-            subtitle_y = round(height * 0.305)
-        if subtitle_parts:
-            textured_text(layer, subtitle_parts[0], (width // 2, subtitle_y), body_font, quiet, 184, "center")
-        if len(subtitle_parts) > 1:
-            textured_text(layer, "\n".join(subtitle_parts[1:]), (width // 2, round(height * 0.357)), body_font, quiet, 184, "center", spacing=round(body_font.size * 0.78))
+            textured_text(layer, title_text, (width // 2, round(height * 0.155)), cover_first_font, warm, 232, "center")
+            subtitle_y = round(height * 0.235)
+        if subtitle_text:
+            textured_text(layer, subtitle_text, (width // 2, subtitle_y), body_font, quiet, 236, "center", spacing=round(body_font.size * 0.48))
+        textured_text(layer, signature.replace(" ", "  "), (width // 2, round(height * 0.365)), brand_font, faint, 184, "center")
 
     elif variant == 1:
         # Vertical title + horizontal annotation.
-        vertical_title = "\n".join("".join(title_parts)[:4])
-        textured_text(layer, vertical_title, (round(width * 0.205), round(height * 0.150)), vertical_font, warm, 215, "center", spacing=round(vertical_font.size * 0.52))
-        draw_rule(layer, (round(width * 0.286), round(height * 0.155), round(width * 0.286), round(height * 0.405)), (*faint, 76), rule_width)
-        remainder = "".join(title_parts)[4:] or "宋式留白"
-        textured_text(layer, remainder, (round(width * 0.350), round(height * 0.188)), title_small_font, warm, 210, "left")
-        if subtitle_parts:
-            textured_text(layer, subtitle_parts[0], (round(width * 0.350), round(height * 0.270)), body_font, quiet, 182, "left")
-        if len(subtitle_parts) > 1:
-            textured_text(layer, "\n".join(subtitle_parts[1:]), (round(width * 0.350), round(height * 0.312)), body_small_font, quiet, 168, "left", spacing=round(body_small_font.size * 0.78))
-        textured_text(layer, signature.replace(" ", "  "), (round(width * 0.350), round(height * 0.390)), brand_font, faint, 142, "left")
+        left = round(width * 0.105)
+        textured_text(layer, title_text, (left, round(height * 0.125)), title_font, warm, 226, "left")
+        draw_rule(layer, (left, round(height * 0.195), round(width * 0.300), round(height * 0.195)), (*faint, 84), rule_width)
+        textured_text(layer, subtitle_text, (left, round(height * 0.230)), body_font, quiet, 232, "left", spacing=round(body_font.size * 0.48))
+        textured_text(layer, signature.replace(" ", "  "), (left, round(height * 0.360)), brand_font, faint, 150, "left")
 
     elif variant == 2:
-        right = round(width * 0.835)
-        textured_text(layer, signature.replace(" ", "  "), (right, round(height * 0.078)), brand_font, faint, 140, "right")
-        textured_text(layer, title_text, (right, round(height * 0.165)), title_font, warm, 214, "right", spacing=round(title_font.size * 0.32))
-        draw_rule(layer, (round(width * 0.665), round(height * 0.220), right, round(height * 0.220)), (*faint, 74), rule_width)
-        if subtitle_parts:
-            textured_text(layer, subtitle_parts[0], (right, round(height * 0.258)), body_font, quiet, 178, "right")
-        if len(subtitle_parts) > 1:
-            textured_text(layer, "\n".join(subtitle_parts[1:]), (right, round(height * 0.300)), body_font, quiet, 178, "right", spacing=round(body_font.size * 0.78))
+        right = round(width * 0.875)
+        textured_text(layer, signature.replace(" ", "  "), (right, round(height * 0.065)), brand_font, faint, 150, "right")
+        textured_text(layer, title_text, (right, round(height * 0.140)), title_font, warm, 226, "right")
+        draw_rule(layer, (round(width * 0.655), round(height * 0.205), right, round(height * 0.205)), (*faint, 82), rule_width)
+        textured_text(layer, subtitle_text, (right, round(height * 0.240)), body_font, quiet, 232, "right", spacing=round(body_font.size * 0.48))
 
     elif variant == 3:
-        left = round(width * 0.120)
-        textured_text(layer, signature.replace(" ", "  "), (left, round(height * 0.080)), brand_font, faint, 140, "left")
-        textured_text(layer, title_text, (left, round(height * 0.174)), title_font, warm, 214, "left", spacing=round(title_font.size * 0.32))
-        if subtitle_parts:
-            textured_text(layer, subtitle_parts[0], (left, round(height * 0.268)), body_font, quiet, 180, "left")
-        if len(subtitle_parts) > 1:
-            textured_text(layer, "\n".join(subtitle_parts[1:]), (left, round(height * 0.311)), body_font, quiet, 180, "left", spacing=round(body_font.size * 0.78))
-        textured_text(layer, "分\n寸", (round(width * 0.835), round(height * 0.165)), body_font, faint, 132, "center", spacing=round(body_font.size * 0.90))
+        vertical_title = "\n".join("".join(title_parts)[:5])
+        textured_text(layer, vertical_title, (round(width * 0.185), round(height * 0.105)), vertical_font, warm, 224, "center", spacing=round(vertical_font.size * 0.42))
+        draw_rule(layer, (round(width * 0.270), round(height * 0.115), round(width * 0.270), round(height * 0.410)), (*faint, 78), rule_width)
+        textured_text(layer, subtitle_text, (round(width * 0.340), round(height * 0.195)), body_font, quiet, 232, "left", spacing=round(body_font.size * 0.48))
+        textured_text(layer, signature.replace(" ", "  "), (round(width * 0.340), round(height * 0.350)), brand_font, faint, 148, "left")
 
     elif variant == 4:
-        right = round(width * 0.825)
-        textured_text(layer, title_text, (right, round(height * 0.157)), title_font, warm, 214, "right", spacing=round(title_font.size * 0.32))
-        if subtitle_parts:
-            textured_text(layer, subtitle_parts[0], (right, round(height * 0.257)), body_font, quiet, 180, "right")
-        if len(subtitle_parts) > 1:
-            textured_text(layer, "\n".join(subtitle_parts[1:]), (right, round(height * 0.299)), body_font, quiet, 180, "right", spacing=round(body_font.size * 0.78))
-        draw_rule(layer, (round(width * 0.685), round(height * 0.357), right, round(height * 0.357)), (*faint, 74), rule_width)
-        textured_text(layer, signature.replace(" ", "  "), (right, round(height * 0.385)), brand_font, faint, 142, "right")
+        left = round(width * 0.110)
+        textured_text(layer, title_text, (left, round(height * 0.165)), title_font, warm, 226, "left")
+        textured_text(layer, subtitle_text, (left, round(height * 0.245)), body_font, quiet, 232, "left", spacing=round(body_font.size * 0.48))
+        textured_text(layer, "器\n物", (round(width * 0.860), round(height * 0.130)), body_font, faint, 148, "center", spacing=round(body_font.size * 0.68))
+
+    elif variant == 5:
+        right = round(width * 0.860)
+        textured_text(layer, title_text, (right, round(height * 0.115)), title_small_font, warm, 226, "right")
+        textured_text(layer, subtitle_text, (right, round(height * 0.195)), body_font, quiet, 232, "right", spacing=round(body_font.size * 0.48))
+        draw_rule(layer, (round(width * 0.625), round(height * 0.335), right, round(height * 0.335)), (*faint, 80), rule_width)
+        textured_text(layer, signature.replace(" ", "  "), (right, round(height * 0.365)), brand_font, faint, 148, "right")
+
+    elif variant == 6:
+        left = round(width * 0.115)
+        textured_text(layer, signature.replace(" ", "  "), (left, round(height * 0.060)), brand_font, faint, 148, "left")
+        draw_rule(layer, (left, round(height * 0.105), round(width * 0.300), round(height * 0.105)), (*faint, 80), rule_width)
+        textured_text(layer, title_text, (left, round(height * 0.145)), title_font, warm, 226, "left")
+        textured_text(layer, subtitle_text, (left, round(height * 0.225)), body_font, quiet, 232, "left", spacing=round(body_font.size * 0.48))
+
+    elif variant == 7:
+        center = width // 2
+        textured_text(layer, title_text, (center, round(height * 0.105)), title_small_font, warm, 226, "center")
+        textured_text(layer, subtitle_text, (center, round(height * 0.185)), body_font, quiet, 232, "center", spacing=round(body_font.size * 0.48))
+        textured_text(layer, signature.replace(" ", "  "), (center, round(height * 0.335)), brand_font, faint, 148, "center")
+
+    elif variant == 8:
+        left = round(width * 0.105)
+        textured_text(layer, title_text, (left, round(height * 0.100)), title_small_font, warm, 226, "left")
+        textured_text(layer, subtitle_text, (width // 2, round(height * 0.195)), body_font, quiet, 232, "center", spacing=round(body_font.size * 0.48))
+        draw_rule(layer, (round(width * 0.410), round(height * 0.335), round(width * 0.590), round(height * 0.335)), (*faint, 80), rule_width)
+        textured_text(layer, signature.replace(" ", "  "), (round(width * 0.895), round(height * 0.365)), brand_font, faint, 148, "right")
+
+    elif variant == 9:
+        right = round(width * 0.880)
+        textured_text(layer, title_text, (right, round(height * 0.105)), title_font, warm, 226, "right")
+        textured_text(layer, subtitle_text, (right, round(height * 0.185)), body_font, quiet, 232, "right", spacing=round(body_font.size * 0.48))
+        textured_text(layer, "汝\n窑", (round(width * 0.135), round(height * 0.125)), body_font, faint, 145, "center", spacing=round(body_font.size * 0.70))
+        textured_text(layer, signature.replace(" ", "  "), (right, round(height * 0.335)), brand_font, faint, 148, "right")
 
     result = add_grain(image)
     result = Image.alpha_composite(result.convert("RGBA"), layer).convert("RGB")
@@ -391,9 +406,11 @@ def main() -> None:
         for page_index, (source, page) in enumerate(zip(sources, pages)):
             filename = f"{page_index + 1:02d}-{clean_filename(page['title'])}.jpg"
             result = image_dir / filename
-            # Keep the approved V2 rhythm: cover center, then vertical/right/left/
-            # colophon/center/editorial-left/editorial-right in sequence.
-            layout = page_index % 5
+            # Keep the confirmed 13-album rhythm, with variation by photo.
+            inner_layouts = [7, 2, 1, 9, 4, 6, 3, 5, 8]
+            layout = 0 if page_index == 0 else inner_layouts[(page_index - 1) % len(inner_layouts)]
+            if layout == 3 and len(page["title"].replace("\n", "")) > 5:
+                layout = 7  # Vertical type must never silently truncate a title.
             render_page(
                 source,
                 result,
