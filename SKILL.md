@@ -58,6 +58,7 @@ description: Turn categorized Ru ware and ceramic product photos into complete c
 - 文字位置根据每张照片留白变化，不整套复制同一模板；避开器物、手部和重要纹理。
 - 中文品牌写“京鸿汝窑”；英文签名固定为 `RUYAO JINGHONG`；不使用页码。
 - 颗粒感应细腻克制，只作用于整体质感，不能破坏釉色和器物细节。
+- 默认沿用用户已确认的“宋代审美 V2”字体、字号、行距、低对比暖灰色与颗粒参数；只让文字位置随留白变化。未经用户明确要求，不得再次启用自动字号或改换排版系统。
 
 详细视觉规则见 [references/brand-and-visual-guide.md](references/brand-and-visual-guide.md)。批量制作可使用 `scripts/render_album.py`，清单格式见 [references/manifest-schema.md](references/manifest-schema.md)。
 
@@ -81,3 +82,4 @@ description: Turn categorized Ru ware and ceramic product photos into complete c
 - 提交信息用简洁中文说明本次升级，例如“更新：放大图片小字并增加排版变化”。
 - 默认不上传原始商品照片、客户资料、电子书、生成图册或临时输出；只有用户明确要求时才上传这些内容。
 - 同步前检查远端同名文件，避免覆盖未读取的新修改；出现冲突或需要删除、改名、大范围迁移时，先向用户说明。
+
