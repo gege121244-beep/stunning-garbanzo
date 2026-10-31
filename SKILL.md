@@ -22,6 +22,7 @@ description: Turn categorized Ru ware and ceramic product photos into complete c
 - 不把“一只杯为什么越薄越难做”这类纯工艺问题当整套主轴，除非用户明确要求技术专题。
 - 历史事实优先核验故宫博物院、中国国家博物馆、地方博物馆、考古机构或正式论文；把来源写入运营留档，不在图片上堆网址。
 - 不把现代器形冒充宋代器物。可以讲“宋瓷审美如何进入现代生活”，但要明确现代属性。
+- 发布正文采用有史料细节的完整文化叙事，参照用户确认的《宋人的茶席，为什么容不下一点凌乱？》写法；不要把图册逐页短句拼成文章，也不要缩成泛泛的审美摘要。具体要求见 `references/content-strategy.md`。
 
 需要完整选题方法和软植入结构时，读取 [references/content-strategy.md](references/content-strategy.md)。
 
