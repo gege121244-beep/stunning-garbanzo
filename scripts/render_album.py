@@ -265,15 +265,16 @@ def render_page(
     elif variant == 4:
         left = round(width * 0.110)
         textured_text(layer, title_text, (left, round(height * 0.165)), title_font, warm, 226, "left")
+        draw_rule(layer, (left, round(height * 0.220), round(width * 0.250), round(height * 0.220)), (*faint, 82), rule_width)
         textured_text(layer, subtitle_text, (left, round(height * 0.245)), body_font, quiet, 232, "left", spacing=round(body_font.size * 0.48))
         textured_text(layer, "器\n物", (round(width * 0.860), round(height * 0.130)), body_font, faint, 148, "center", spacing=round(body_font.size * 0.68))
 
     elif variant == 5:
         right = round(width * 0.860)
         textured_text(layer, title_text, (right, round(height * 0.115)), title_small_font, warm, 226, "right")
+        draw_rule(layer, (round(width * 0.720), round(height * 0.170), right, round(height * 0.170)), (*faint, 80), rule_width)
         textured_text(layer, subtitle_text, (right, round(height * 0.195)), body_font, quiet, 232, "right", spacing=round(body_font.size * 0.48))
-        draw_rule(layer, (round(width * 0.625), round(height * 0.335), right, round(height * 0.335)), (*faint, 80), rule_width)
-        textured_text(layer, signature.replace(" ", "  "), (right, round(height * 0.365)), brand_font, faint, 148, "right")
+        textured_text(layer, signature.replace(" ", "  "), (right, round(height * 0.315)), brand_font, faint, 148, "right")
 
     elif variant == 6:
         left = round(width * 0.115)
@@ -285,19 +286,21 @@ def render_page(
     elif variant == 7:
         center = width // 2
         textured_text(layer, title_text, (center, round(height * 0.105)), title_small_font, warm, 226, "center")
+        draw_rule(layer, (round(width * 0.445), round(height * 0.160), round(width * 0.555), round(height * 0.160)), (*faint, 82), rule_width)
         textured_text(layer, subtitle_text, (center, round(height * 0.185)), body_font, quiet, 232, "center", spacing=round(body_font.size * 0.48))
         textured_text(layer, signature.replace(" ", "  "), (center, round(height * 0.335)), brand_font, faint, 148, "center")
 
     elif variant == 8:
         left = round(width * 0.105)
-        textured_text(layer, title_text, (left, round(height * 0.100)), title_small_font, warm, 226, "left")
-        textured_text(layer, subtitle_text, (width // 2, round(height * 0.195)), body_font, quiet, 232, "center", spacing=round(body_font.size * 0.48))
-        draw_rule(layer, (round(width * 0.410), round(height * 0.335), round(width * 0.590), round(height * 0.335)), (*faint, 80), rule_width)
-        textured_text(layer, signature.replace(" ", "  "), (round(width * 0.895), round(height * 0.365)), brand_font, faint, 148, "right")
+        textured_text(layer, title_text, (left, round(height * 0.120)), title_small_font, warm, 226, "left")
+        draw_rule(layer, (left, round(height * 0.180), round(width * 0.245), round(height * 0.180)), (*faint, 82), rule_width)
+        textured_text(layer, subtitle_text, (left, round(height * 0.210)), body_font, quiet, 232, "left", spacing=round(body_font.size * 0.48))
+        textured_text(layer, signature.replace(" ", "  "), (left, round(height * 0.315)), brand_font, faint, 148, "left")
 
     elif variant == 9:
         right = round(width * 0.880)
         textured_text(layer, title_text, (right, round(height * 0.105)), title_font, warm, 226, "right")
+        draw_rule(layer, (round(width * 0.740), round(height * 0.160), right, round(height * 0.160)), (*faint, 82), rule_width)
         textured_text(layer, subtitle_text, (right, round(height * 0.185)), body_font, quiet, 232, "right", spacing=round(body_font.size * 0.48))
         textured_text(layer, "汝\n窑", (round(width * 0.135), round(height * 0.125)), body_font, faint, 145, "center", spacing=round(body_font.size * 0.70))
         textured_text(layer, signature.replace(" ", "  "), (right, round(height * 0.335)), brand_font, faint, 148, "right")
